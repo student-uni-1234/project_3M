@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family:  pop;
 }
 
 body {
@@ -614,4 +614,9 @@ select option {
     .left-panel {
         width: 100% !important;
     }
+}
+
+@font-face {
+    font-family: pop;
+    src: url(fonts/Poppins-Medium.ttf);
 }
