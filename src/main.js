@@ -388,8 +388,8 @@ function adjustModelScale(modelSize) {
 function adjustCameraForModel(modelSize) {
     const maxSize = Math.max(modelSize.x, modelSize.y, modelSize.z);
 
-    cameraConfig.radius = Math.max(5, maxSize * 0.6);
-    cameraConfig.height = Math.max(5, maxSize * 0.1);
+    cameraConfig.radius = Math.max(5, maxSize * 0.8);
+    cameraConfig.height = Math.max(5, maxSize * 0.3);
 
     camera.fov = 25;
     camera.updateProjectionMatrix();
