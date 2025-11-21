@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parque Nacional Serranía del Aguaraque</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="view-one">
+    <div class="container">
+        <!-- Panel izquierdo -->
+        <div class="left-panel">
+            <div class="title-container">
+                <h1 class="title">PARQUE NACIONAL <br> SERRANIA DEL AGUARAGUE</h1>
+            </div>
+            <div id="model3d-container"></div>
+            <div class="content">
+
+            </div>
+
+            <!-- Contenedor para imagen del panel izquierdo -->
+            <div id="left-panel-image" class="left-panel-image">
+                <img src="" alt="" class="responsive-image" id="left-image">
+            </div>
+
+            <!-- Vista 3D en miniatura -->
+            <div id="mini-3d-container" class="mini-3d-container"></div>
+
+            <div class="decoration"></div>
+
+            <div class="view-selector">
+                <select id="viewSelector">
+                    <option value="one">Vista 3D</option>
+                    <option value="two">Territorio</option>
+                    <option value="three">Agua</option>
+                    <option value="four">Vegetación</option>
+                    <option value="five">Caminos</option>
+                    <option value="six">Siembra</option>
+                    <option value="seven">Incendios</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Panel derecho -->
+        <div class="right-panel">
+            <div class="top-half">
+                <div class="section1 right-section">
+                    <div class="card" id="section1-card">
+                        <!-- Contenido dinámico para sección 1 -->
+                    </div>
+                </div>
+                <div class="section2 right-section">
+                    <div class="card" id="section2-card">
+                        <!-- Contenido dinámico para sección 2 -->
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-half section3 right-section">
+                <div class="image-container full-height-image">
+                    <img src="" alt="" class="responsive-image" id="right-image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="zoom-3d-container" class="zoom-3d-container">
+        <button id="zoom-back-button" class="zoom-back-button">Volver</button>
+    </div>
+    <button id="mini-zoom-button" class="mini-zoom-button">Zoom</button>
+
+    <script type="module" src="main.js"></script>
+
+</body>
+
+</html>

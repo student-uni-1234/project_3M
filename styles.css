@@ -1,0 +1,617 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    transition: all 0.5s ease;
+}
+
+.left-panel {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: white;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.5s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Imagen del panel izquierdo */
+.left-panel-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    display: none;
+}
+
+/* Contenedor 3D del río */
+.river-3d-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    display: none;
+}
+
+.right-panel {
+    background-color: #f5f7fa;
+    display: none;
+    flex: 1;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+.right-panel .top-half {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+}
+
+.right-panel .top-half .section1,
+.right-panel .top-half .section2 {
+    flex: 1;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.right-panel .top-half .section2 {
+    display: none;
+}
+
+.right-panel .bottom-half {
+    flex: 1;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Contenedores de imagen */
+.image-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #f8f9fa;
+}
+
+.full-height-image {
+    height: 100%;
+    width: 100%;
+}
+
+.responsive-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Estilos comunes para listas */
+.tree-list,
+.crop-list,
+.year-list {
+    max-height: 100%;
+    overflow-y: auto;
+    padding: 0.5rem;
+}
+
+/* Estilos comunes para items */
+.tree-item,
+.crop-item,
+.year-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tree-item:hover,
+.crop-item:hover,
+.year-item:hover {
+    background: #f7fafc;
+    transform: translateY(-2px);
+}
+
+/* Estilos específicos para cada tipo de item */
+.tree-item {
+    border-left: 4px solid #77a56b;
+    justify-content: center;
+}
+
+.tree-item:hover {
+    background: #f0fdf4;
+    transform: translateX(5px);
+}
+
+.crop-item.active {
+    background: #ebf8ff;
+    border: 2px solid #4299e1;
+}
+
+.year-item {
+    text-align: center;
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.year-item.active {
+    background: #fed7d7;
+    border: 2px solid #e53e3e;
+}
+
+.tree-name,
+.crop-name {
+    font-weight: 600;
+    color: #2d3748;
+    font-size: 1.1rem;
+}
+
+.tree-name {
+    width: 100%;
+    text-align: center;
+}
+
+.crop-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-right: 1rem;
+}
+
+/* Vistas comunes */
+.view-one .left-panel {
+    width: 100%;
+}
+
+.view-two .left-panel,
+.view-three .left-panel,
+.view-four .left-panel,
+.view-five .left-panel,
+.view-six .left-panel,
+.view-seven .left-panel {
+    width: 50%;
+}
+
+.view-two .right-panel,
+.view-three .right-panel,
+.view-four .right-panel,
+.view-five .right-panel,
+.view-six .right-panel,
+.view-seven .right-panel {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+}
+
+/* Ocultar contenido en vistas que no sean one */
+.view-two .content,
+.view-three .content,
+.view-four .content,
+.view-five .content,
+.view-six .content,
+.view-seven .content {
+    display: none;
+}
+
+/* Mostrar imagen en panel izquierdo para vistas que no sean one */
+.view-two .left-panel-image,
+.view-three .left-panel-image,
+.view-four .left-panel-image,
+.view-five .left-panel-image,
+.view-six .left-panel-image,
+.view-seven .left-panel-image {
+    display: block;
+}
+
+.title-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 2rem;
+    z-index: 10;
+    position: relative;
+}
+
+.title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.8);
+    color: #fff;
+    text-align: center;
+    line-height: 1.2;
+}
+
+/* Ocultar título en vistas que no sean one */
+.view-two .title-container,
+.view-three .title-container,
+.view-four .title-container,
+.view-five .title-container,
+.view-six .title-container,
+.view-seven .title-container {
+    display: none;
+}
+
+#model3d-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Ocultar modelo 3D en vistas que no sean one */
+.view-two #model3d-container,
+.view-three #model3d-container,
+.view-four #model3d-container,
+.view-five #model3d-container,
+.view-six #model3d-container,
+.view-seven #model3d-container {
+    display: none;
+}
+
+.content {
+    max-width: 600px;
+    line-height: 1.6;
+    margin-top: auto;
+    margin-bottom: 4rem;
+    z-index: 6;
+    position: relative;
+}
+
+.content h2 {
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+.content p {
+    margin-bottom: 1rem;
+}
+
+.view-selector {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+    z-index: 10;
+}
+
+select {
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    border: none;
+    background-color: #2575fc;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    min-width: 180px;
+}
+
+select:hover {
+    background-color: #1a67e8;
+}
+
+select option {
+    background-color: #1a1a2e;
+    color: white;
+}
+
+.right-section {
+    border-bottom: 1px solid #e1e5eb;
+}
+
+.right-section:last-child {
+    border-bottom: none;
+}
+
+.card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 0;
+    flex: 1;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.card h2 {
+    color: #2575fc;
+    margin-bottom: 0;
+    font-size: 1.5rem;
+    text-align: center;
+    border-bottom: 2px solid #e2e8f0;
+    padding: 1.5rem;
+    background: #f8f9fa;
+}
+
+.card h3 {
+    color: #2d3748;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.card p {
+    margin-bottom: 0.5rem;
+    color: #4a5568;
+    line-height: 1.5;
+}
+
+.card-content {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.decoration {
+    position: absolute;
+    bottom: -50px;
+    right: -50px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Estilos para imágenes en sección 2 */
+.section2-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Mostrar section2 solo para vistas específicas */
+.view-four .section2,
+.view-six .section2,
+.view-seven .section2 {
+    display: flex;
+}
+
+/* Borde separador cuando section2 está visible */
+.view-four .section1,
+.view-six .section1,
+.view-seven .section1 {
+    border-right: 1px solid #e1e5eb !important;
+}
+
+/* Estilos para la leyenda y área */
+.legend-area-container {
+    padding: 1rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid transparent;
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    margin-right: 1rem;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.legend-name {
+    font-weight: 600;
+    color: #2d3748;
+    flex: 1;
+    font-size: 1rem;
+}
+
+.area-value {
+    font-weight: 700;
+    color: #2575fc;
+    font-size: 1.1rem;
+}
+
+.area-only {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    gap: 1rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    margin: 1rem;
+    text-align: center;
+    height: calc(100% - 2rem);
+}
+
+.color-square {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    border: 3px solid #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.area-only .area-value {
+    font-size: 2.5rem;
+    color: #2d3748;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.area-only .area-label {
+    color: #4a5568;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Ocultar modelos 3D en todas las vistas excepto vista 3D */
+.view-two .river-3d-container,
+.view-three .river-3d-container,
+.view-four .river-3d-container,
+.view-five .river-3d-container,
+.view-six .river-3d-container,
+.view-seven .river-3d-container {
+    display: none !important;
+}
+
+/* Deshabilitar capacidad 3D en vista agua */
+.view-three .river-3d-container {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* Contenedor 3D en miniatura */
+.mini-3d-container {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    width: 400px;
+    height: 250px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    z-index: 5;
+    display: none;
+    overflow: hidden;
+}
+
+/* Mostrar mini 3D solo para vistas específicas */
+.view-three .mini-3d-container,
+.view-six .mini-3d-container,
+.view-seven .mini-3d-container {
+    display: block;
+}
+
+.mini-3d-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 8px;
+}
+
+/* Estilos para el contenido de información */
+.info-content {
+    padding: 1.5rem;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.info-content p {
+    margin-bottom: 1.2rem;
+    line-height: 1.6;
+    color: #4a5568;
+    font-size: 1rem;
+    text-align: left;
+}
+
+.info-content b {
+    color: #2d3748;
+    font-weight: 700;
+}
+
+/* Botón Zoom para minivista */
+.mini-zoom-button {
+    position: absolute;
+    bottom: 32px;
+    left: 240px;
+    z-index: 6;
+    padding: 0.5rem 1rem;
+    background-color: #2575fc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: none;
+    transition: all 0.3s ease;
+}
+
+.mini-zoom-button:hover {
+    background-color: #1a67e8;
+    transform: translateY(-2px);
+}
+
+.view-three .mini-zoom-button,
+.view-six .mini-zoom-button,
+.view-seven .mini-zoom-button {
+    display: block;
+}
+
+.zoom-3d-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #1a1a2e;
+    z-index: 1000;
+    display: none;
+}
+
+.zoom-3d-container.active {
+    display: block;
+}
+
+/* Botón Volver en zoom */
+.zoom-back-button {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1001;
+    padding: 0.75rem 1.5rem;
+    background-color: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.zoom-back-button:hover {
+    background-color: #b91c1c;
+    transform: translateY(-2px);
+}
+
+/* ---- Ocultar panel derecho en pantallas pequeñas ---- */
+@media (max-width: 767px) {
+
+    .right-panel {
+        display: none !important;
+    }
+
+    /* El panel izquierdo pasa a ocupar todo el ancho */
+    .left-panel {
+        width: 100% !important;
+    }
+}
